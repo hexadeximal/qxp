@@ -235,6 +235,9 @@ int main(int argc, char **argv)
 			printf("cleanup\n");
 			running = false;
 		}
+		if(strcmp(query, "history\n") == 0) {
+            print_history(history);
+        }
 
 		eval_xpath(doc, query);
 
@@ -253,13 +256,7 @@ int main(int argc, char **argv)
             strcpy(history->q, query);
         }
         
-        print_history(history);
-        
-        if(history == NULL) {
-            fprintf(stderr, "error alloc %s %d\n", __FILE__,__LINE__);
-            return -1;
-        }
-        
+
         free(query);
 	}
 
